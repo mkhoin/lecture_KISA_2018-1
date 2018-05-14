@@ -33,6 +33,7 @@
 #### .###################. ####
 #### | 5. R을 활용한 시각화 | ####
 #### .###################. ####
+# install.packages("ggplot2")
 library("ggplot2")
 library("plotly")
 library("ggcorrplot")
@@ -63,6 +64,7 @@ ggplot(data = data_point, aes(xx, yy)) + geom_point()
 
 # 스타일 2
 
+
 #### __ [04] 기본 그래프 ####
 #### ____ ● 선 그래프 ####
 
@@ -71,7 +73,18 @@ data_bar = data.frame(xx = 1:10,
                       yy = sample(1:3, 10, replace = TRUE))
 data_bar
 
+ggplot(data = data_bar,
+       aes(x = xx,
+           y = yy)) +
+  geom_col()
+
 #### ____ ● 추가 기능####
+ggplot(data = data_point,
+       aes(x = xx,
+           y = yy)) + 
+  geom_point(color = "#ADADAD",
+             size = 10)
+
 
 #### __ [05] 다중 그래프 ####
 #### ____ ● 선 그래프 ####
@@ -95,6 +108,13 @@ library("ggplot2")
 # 그래프 5
 
 # 그래프 5 - 퀴즈: 코드를 조금 더 간결하게 바꾸시오.
+ggplot(data = line_df,
+       aes(x = obs,
+           y = value,
+           group = var_1,
+           color = var_1)) + 
+  geom_line(size = 3) + 
+  geom_point(size = 5)
 
 #### __ [06] 색상 설정 Ⅰ ####
 #### ____ ● 막대 그래프 ####
@@ -108,7 +128,13 @@ head(bar_df)
 # 그래프 1
 
 # 그래프 2
-
+ggplot(data = bar_df,
+       aes(x = obs,
+           y = value,
+           color = value)) + 
+  # geom_bar(stat = "identity")
+  geom_col(size = 3)
+  
 # 그래프 3
 
 # 그래프 4
@@ -150,7 +176,7 @@ color_df = data.frame(obs = 1:10,
 head(color_df)
 
 # 그래프 1
-
+colors()
 # 그래프 2
 
 # 그래프 3
@@ -231,8 +257,24 @@ ggplot(data = bar_df, aes(x = obs,
   geom_point(size = 10)
 
 # 그래프 2
+ggplot(data = bar_df, aes(x = obs,
+                          y = value,
+                          color = value)) + 
+  geom_point(size = 10,
+             shape = "★") + 
+  labs(title = "asddsf",
+       color = "legend!!") + 
+  theme(title = element_text(size = 30),
+        axis.title = element_text(size = 30,
+                                  face = c("bold")))
+
 
 # 그래프 3
+library("excel.link")
+xlrc["a1"] = 1:10
+xlrc["c2"] = 1:10
+xlrc["d3"] = current.graphics()
+
 
 # 그래프 4
 
